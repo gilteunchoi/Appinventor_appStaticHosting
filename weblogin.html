@@ -8,7 +8,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
 
         // Your web app's Firebase configuration
@@ -28,9 +28,9 @@
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider(app);
         
-        login.addEventListener('click', (e) => {
+        loginBtn.addEventListener('click', (e) => {
             signInWithRedirect(auth, provider);
-
+            
             getRedirectResult(auth)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access Google APIs.
@@ -39,7 +39,7 @@
 
                 // Appinventor WebViewString (output)
                 window.AppInventor.setWebViewString(token);
-                alert(token);
+                console.log("Google Access Token")
 
                 // The signed-in user info.
                 const user = result.user;
@@ -53,16 +53,23 @@
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 // ...
             });
+
         });
 
-        tokenPrint.addEventListener('click', (e) => {
-            console.log(token);
+        logoutBtn.addEventListener('click',(e) => {
+            const auth = getAuth();
+            signOut(auth).then(() => {
+                console.log("Sign-out successful.");
+            }).catch((error) => {
+                console.log("An error happened.");
+            });
         });
 
       </script>
 </head>
 <body>
-    <button class="social-signin google" id='login'>Log in with Google+</button>
-    <button id='tokenPrint'>Print Access Token</button>
+    <button class="social-signin google" id='loginBtn'>Google Login으로 계속하기</button>
+    <button id='logoutBtn'>로그아웃</button>
+    <p class='textReport'>로그인 버튼을 눌러 Google 아이디를 입력하세요</p>
 </body>
 </html>
