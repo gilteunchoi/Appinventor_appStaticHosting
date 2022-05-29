@@ -1,3 +1,3 @@
 # Appinventor Webpage Hosting
 
-google login -> 
+google login -> https://github.com/gilteunchoi/Appinventor_appStaticHosting/blob/main/weblogin.html
