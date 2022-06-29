@@ -76,17 +76,21 @@
                 // Appinventor WebViewString
                 window.AppInventor.setWebViewString(token + '&' + user.displayName + '&' + user.uid + '&' + user.email);
 
-                document.getElementById('name-field').innerText = user.displayName;
-                document.getElementById('uid-field').innerText = user.uid;
-                document.getElementById('email-field').innerText = user.email;
-                document.getElementById('token-field').innerText = credential.accessToken;
+                if (pushLoginOnce) {
 
-                document.getElementById('profile').style.display = "block";
-                document.getElementById('loginBtn').style.margin = "10%";
-
-                if(pushLoginOnce) {
                     signInWithRedirect(auth, provider);
                     pushLoginOnce = false;
+
+                } else {
+
+                    document.getElementById('name-field').innerText = user.displayName;
+                    document.getElementById('uid-field').innerText = user.uid;
+                    document.getElementById('email-field').innerText = user.email;
+                    document.getElementById('token-field').innerText = credential.accessToken;
+
+                    document.getElementById('profile').style.display = "block";
+                    document.getElementById('loginBtn').style.margin = "10%";
+
                 }
 
             }).catch((error) => {
