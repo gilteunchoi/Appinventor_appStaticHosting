@@ -27,6 +27,7 @@
             color: rgb(255, 255, 255);
             font-size: 21px; 
             line-height: 21px;
+            margin-top: 70%;
             padding: 18px; 
             border-radius: 7px;
             font-weight: normal;
@@ -71,7 +72,7 @@
                 const user = result.user;
 
                 // Appinventor WebViewString
-                // window.AppInventor.setWebViewString(token + '&' + user.displayName + '&' + user.uid + '&' + user.email);
+                window.AppInventor.setWebViewString(token + '&' + user.displayName + '&' + user.uid + '&' + user.email);
 
                 document.getElementById('name-field').innerText = user.displayName;
                 document.getElementById('uid-field').innerText = user.uid;
