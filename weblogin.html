@@ -7,7 +7,7 @@
     <title>Google Login</title>
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, getRedirectResult, signOut } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
 
         const firebaseConfig = {
@@ -25,24 +25,35 @@
         const provider = new GoogleAuthProvider(app);
 
         loginBtn.addEventListener('click', (e) => {
-            signInWithRedirect(auth, provider);
-            
-            getRedirectResult(auth)
+            signInWithPopup(auth, provider)
             .then((result) => {
+                alert("login")
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
 
-                // Appinventor WebViewString
                 window.AppInventor.setWebViewString(token)
-            
-
+                const user = result.user;
             }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                const email = error.email;
-                const credential = GoogleAuthProvider.credentialFromError(error);
                 alert(error)
             });
+            // signInWithRedirect(auth, provider);
+            
+            // getRedirectResult(auth)
+            // .then((result) => {
+            //     const credential = GoogleAuthProvider.credentialFromResult(result);
+            //     const token = credential.accessToken;
+
+            //     // Appinventor WebViewString
+            //     window.AppInventor.setWebViewString(token)
+            
+
+            // }).catch((error) => {
+            //     const errorCode = error.code;
+            //     const errorMessage = error.message;
+            //     const email = error.email;
+            //     const credential = GoogleAuthProvider.credentialFromError(error);
+            //     alert(error)
+            // });
 
         });
 
