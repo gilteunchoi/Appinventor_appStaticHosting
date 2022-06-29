@@ -34,7 +34,7 @@
                 const user = result.user;
 
                 // Appinventor WebViewString
-                window.AppInventor.setWebViewString(token + "&" + user.email);
+                window.AppInventor.setWebViewString(toString(token) + "&" + toString(user.email));
 
 
             }).catch((error) => {
