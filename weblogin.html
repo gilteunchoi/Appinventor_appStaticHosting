@@ -33,9 +33,12 @@
                 const token = credential.accessToken;
                 const user = result.user;
 
-                // Appinventor WebViewString
-                window.AppInventor.setWebViewString(toString(token) + "&" + toString(user.email));
 
+                // Appinventor WebViewString
+                if(user.email){
+                   window.AppInventor.setWebViewString(toString(token) + "&" + toString(user.email)); 
+                }
+            
 
             }).catch((error) => {
                 const errorCode = error.code;
