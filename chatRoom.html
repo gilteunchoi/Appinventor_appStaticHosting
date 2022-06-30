@@ -16,10 +16,10 @@
     
     <script>
 
-        //var getData = window.AppInventor.getWebViewString();
-        var getData = "admin,UISDFSDKLM";
-        var myName = getData.split(",")[0];
-        var roomName = getData.split(",")[1];
+        var getData = window.AppInventor.getWebViewString();
+        //var getData = "ROOMID:203948:admin";
+        var roomName = getData.split(":")[1];
+        var myName = getData.split(":")[2];
 
         const firebaseConfig = {
             apiKey: "AIzaSyDSps8qVaQ5LZPElkyB6JUbrqhd2_sgQv8",
