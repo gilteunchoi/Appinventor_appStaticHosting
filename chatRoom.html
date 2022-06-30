@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    
+    <!-- include firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+    
+    <script>
+
+        var getData = window.AppInventor.getWebViewString();
+        //var getData = "admin,UISDFSDKLM";
+        var myName = getData.split(",")[0];
+        var roomName = getData.split(",")[1];
+
+        const firebaseConfig = {
+                apiKey: "AIzaSyBL6bhBO_vaLKBpsZ0cf6cOSdKbItD6eO0",
+                authDomain: "market-kodekorea-app-new.firebaseapp.com",
+                projectId: "market-kodekorea-app-new",
+                storageBucket: "market-kodekorea-app-new.appspot.com",
+                messagingSenderId: "149980465519",
+                appId: "1:149980465519:web:480cffa274b497e34e809a",
+                databaseURL: "https://market-kodekorea-app-new-default-rtdb.asia-southeast1.firebasedatabase.app"
+            };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <form onsubmit="return sendMessage();">
+        <input id="message" placeholder="Enter message" autocomplete="off">
+    
+        <input type="submit">
+    </form>
+        
+    <script>
+        function sendMessage() {
+            // get message
+            var message = document.getElementById("message").value;
+    
+            // save in database
+            firebase.database().ref(roomName).push().set({
+                "sender": myName,
+                "message": message
+            });
+    
+            // prevent form from submitting
+            return false;
+        }
+    </script>
+
+    <ul id="messages"></ul>
+        
+    <script>
+        // listen for incoming messages
+        firebase.database().ref(roomName).on("child_added", function (snapshot) {
+            var html = "";
+            // give each message a unique ID
+            html += "<li id='message-" + snapshot.key + "'>";
+
+            html += snapshot.val().sender + ": " + snapshot.val().message;
+            html += "</li>";
+    
+            document.getElementById("messages").innerHTML += html;
+        });
+    </script>    
+</body>
+</html>
+
+
