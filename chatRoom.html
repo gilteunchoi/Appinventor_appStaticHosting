@@ -16,21 +16,22 @@
     
     <script>
 
-        var getData = window.AppInventor.getWebViewString();
-        //var getData = "admin,UISDFSDKLM";
+        //var getData = window.AppInventor.getWebViewString();
+        var getData = "admin,UISDFSDKLM";
         var myName = getData.split(",")[0];
         var roomName = getData.split(",")[1];
 
         const firebaseConfig = {
-                apiKey: "AIzaSyBL6bhBO_vaLKBpsZ0cf6cOSdKbItD6eO0",
-                authDomain: "market-kodekorea-app-new.firebaseapp.com",
-                projectId: "market-kodekorea-app-new",
-                storageBucket: "market-kodekorea-app-new.appspot.com",
-                messagingSenderId: "149980465519",
-                appId: "1:149980465519:web:480cffa274b497e34e809a",
-                databaseURL: "https://market-kodekorea-app-new-default-rtdb.asia-southeast1.firebasedatabase.app"
+            apiKey: "AIzaSyDSps8qVaQ5LZPElkyB6JUbrqhd2_sgQv8",
+            authDomain: "market-kodekorea-chat.firebaseapp.com",
+            databaseURL: "https://market-kodekorea-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "market-kodekorea-chat",
+            storageBucket: "market-kodekorea-chat.appspot.com",
+            messagingSenderId: "478334440650",
+            appId: "1:478334440650:web:938f89e609572cfdd01033"
             };
 
+        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
 
