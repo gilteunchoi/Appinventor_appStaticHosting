@@ -47,12 +47,17 @@
         function sendMessage() {
             // get message
             var message = document.getElementById("message").value;
-    
-            // save in database
-            firebase.database().ref(roomName).push().set({
-                "sender": myName,
-                "message": message
-            });
+
+            if(message != ""){
+                document.getElementById("message").value = "";
+
+                // save in database
+                firebase.database().ref(roomName).push().set({
+                    "sender": myName,
+                    "message": message
+                });                
+            }
+
     
             // prevent form from submitting
             return false;
